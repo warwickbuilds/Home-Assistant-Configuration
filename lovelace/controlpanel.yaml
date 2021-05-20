@@ -1,0 +1,1208 @@
+panel: true
+path: controlpanel
+title: controlpanel
+background: '#000'
+theme: black
+cards:
+  ## LAYOUT: PAGE SETUP
+  - type: custom:layout-card
+    layout: grid
+    gridrows: auto
+    gridcols: 240px auto
+    style: |
+      body, *{
+        color: rgba(255, 255, 255, 0.8);
+      }
+    cards:
+      ## DISPLAY: TIME TOP
+      - type: markdown
+        gridrow: 1 / 1
+        gridcol: 1 / 1
+        style:
+          .: |
+            ha-card { 
+              height: 100%;
+              background: rgba(0,0,0);
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none;
+              font-size: 1.5em;
+              padding: 0 !important;
+              line-height: 1;
+              color: rgba(255, 255, 255, 0.9);
+              text-align: center;
+            }
+          ha-markdown:
+            $: |
+              h1 {
+                font-size: 3em;
+                font-weight: 300;
+                letter-spacing: '-0.05vw';
+                margin-block-end: 0.1em;
+                margin-top:9px!important;
+              }
+              ha-icon {
+                margin-top: -5px;
+              }   
+
+              :nth-child(2){
+                padding-top: 40px;
+                font-size: 1.9em;
+                font-weight: 300;
+              }       
+
+              :nth-child(2) small {
+                font-size: .65em !important;
+                vertical-align:middle;
+                color: #607d8b!important;
+              }
+
+              :nth-child(3){
+                padding-top: 15px;
+                color: rgba(255, 255, 255, 0.8);
+                padding-left: 7px;
+                font-weight: 300;
+              }      
+
+              :nth-child(4){
+                padding-top: 1px;
+                font-size: .9em;
+                color: rgba(255, 255, 255, 0.8);
+
+              }
+
+              :nth-child(6)>div{
+                background-color: #fad859;
+                color: black;
+                border-radius: 4px;
+                padding-top: 2px;
+
+              }
+
+              :nth-child(7)>div{
+                background-color:#c8f7c5;color: black;
+                border-radius: 4px;
+                padding-top: 2px;
+                margin-top: 5px;
+              }
+
+              :nth-child(8)>div{
+                background-color:#c8f7c5;color: black;
+                border-radius: 4px;
+                padding-top: 2px;
+                margin-top: 5px;
+              }
+
+              :nth-child(9)>div,
+              :nth-child(10)>div{
+                background-color:#da4f45;color: black;
+                border-radius: 4px;
+                padding-top: 2px;
+                margin-top: 5px;
+              }
+
+              :nth-child(11)>div{
+                background-color:#f4b350;color: black;
+                border-radius: 4px;
+                padding-top: 2px;
+                margin-top: 5px;
+              }
+
+              :nth-child(12)>div{
+                background-color:#f1e7fe;color: black;
+                border-radius: 4px;
+                padding-top: 2px;
+                margin-top: 5px;
+              }
+
+              :nth-child(13)>div{
+                background-color:#f1e7fe;color: black;
+                border-radius: 4px;
+                padding-top: 2px;
+                margin-top: 5px;
+              }
+
+              :nth-child(15)>div,
+              :nth-child(16)>div,
+              :nth-child(17)>div,
+              :nth-child(18)>div{
+                background-color: #ec644b;
+                color: black;
+                border-radius: 4px;
+                padding-top: 2px;
+                margin-top: 5px;
+                font-size:.9em;
+                animation: blinker 2s linear infinite;
+              }
+              @keyframes blinker {
+                50% {
+                  opacity: .6;
+                }
+              }
+        content: |
+          <h1>{{ states('sensor.normaltime') }}</h2>
+          <div><small>{{ states('sensor.tempr_bom_feelslike') }}<small>°C</small></small>{{ states('sensor.tempr_bom_air') }}°c<small> {{ states('sensor.tempr_bom_humidity') }}<small>%</small></small></div>
+          <div><small></small></div>
+          <div></div>
+          <br/>
+          <div>{% if is_state('sensor.solarcurrentproduction', 'unavailable0') %} {% else %}<div><ha-icon icon="mdi:solar-power"></ha-icon> {{ states('sensor.solarcurrentproduction') }} watts</div>{% endif %}</div>
+          <div>{% if is_state('switch.zone_1_front_lawn_house_side', 'on') %}<div> <ha-icon icon="mdi:sprinkler"></ha-icon> Irrigation On</div>{% else %}{% endif %}</div>
+          <div>{% if is_state('switch.zone_2_front_lawn_road_side', 'on') %} <div><ha-icon icon="mdi:sprinkler"></ha-icon> Irrigation On</div>{% else %}{% endif %}</div>
+          <div>{% if is_state('climate.mhiductedac', 'heat' ) %} <div><ha-icon icon="mdi:air-filter"></ha-icon> Ducted Heat</div>{% else %}{% endif %}</div>
+          <div>{% if is_state('climate.mhiductedac', 'cool') %} <div><ha-icon icon="mdi:air-filter"></ha-icon> Ducted Cool</div>{% else %}{% endif %}</div>
+          <div>{% if is_state('input_boolean.nodered_sleepintomorrow', 'on') %} <div><ha-icon icon="mdi:sleep"></ha-icon> Sleep-in On</div>{% else %}{% endif %}</div>
+          <div>{% if is_state('input_boolean.nodered_goodnight', 'on') %} <div><ha-icon icon="mdi:emoticon-kiss-outline"></ha-icon> Goodnight</div>{% else %}{% endif %}</div>
+          <div>{% if is_state('input_boolean.nodered_goodbye', 'on') %} <div><ha-icon icon="mdi:door-open"></ha-icon> Goodbye</div>{% else %}{% endif %}</div>
+          <br>
+          <div>{% if is_state('binary_sensor.front_door_open', 'on') %} <div><ha-icon icon="mdi:door-open"></ha-icon> Front Door</div>{% else %}{% endif %}</div>
+          <div>{% if is_state('binary_sensor.opengarage', 'on') %} <div><ha-icon icon="mdi:door-open"></ha-icon> Garage Door</div>{% else %}{% endif %}</div>
+          <div>{% if is_state('binary_sensor.openshed', 'on') %} <div><ha-icon icon="mdi:door-open"></ha-icon> Shed Door</div>{% else %}{% endif %}</div>
+          <div>{% if is_state('binary_sensor.opensidegate', 'on') %} <div><ha-icon icon="mdi:door-open"></ha-icon> Side Gate</div>{% else %}{% endif %}</div>
+
+      ## LIGHTS: HEADER
+      - type: vertical-stack
+        gridrow: 1 / 1
+        gridcol: 2 / 2
+        cards:
+          - type: markdown
+            style: |
+              ha-card {
+                height: 100%; 
+                background-color: rgba(0, 0, 0, 0);
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                box-shadow: none;
+                font-size: 1.8em;
+                padding: 0 !important;
+                line-height: 1.5;
+                margin-top: 20px;
+                font-weight: 300;
+              }
+              ha-markdown {
+                padding: 0!important;
+              }
+            content: |
+              <div>Lighting</div>
+
+          ## LIGHTS: BUTTONS
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: button_light
+                entity: light.benchall
+                name: Bench
+
+              - type: custom:button-card
+                template: button_light
+                entity: light.pantryall
+                name: Pantry
+
+              - type: custom:button-card
+                template: button_light
+                entity: light.diningall
+                name: Dining
+
+              - type: custom:button-card
+                template: button_light
+                entity: light.loungefrontall
+                name: Lng TV
+
+              - type: custom:button-card
+                template: button_light
+                entity: light.loungebackall
+                name: Lng Bk
+
+              - type: custom:button-card
+                template: button_light
+                entity: light.funroomall
+                name: Funroom
+
+              - type: custom:button-card
+                template: button_light
+                entity: light.hallwayall
+                name: Hallway
+
+              - type: custom:button-card
+                template: button_light
+                entity: switch.shelly1_84cca8a89f18
+                name: Backyard
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: button_light
+                entity: light.bedroom1plugall
+                name: Bed 1
+
+              - type: custom:button-card
+                template: button_light
+                entity: light.bedroom2all
+                name: Bed 2
+
+              - type: custom:button-card
+                template: button_light
+                entity: light.bedroom3all
+                name: Bed 3
+
+          ## CONTROLS: HEADER
+          - type: horizontal-stack
+            cards:
+              - type: markdown
+                style: |
+                  ha-card {
+                    height: 100%; 
+                    background-color: rgba(0, 0, 0, 0);
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                    font-size: 1.8em;
+                    padding: 0 !important;
+                    line-height: 1.5;
+                    margin-top: 10px;
+                    font-weight: 300;
+                  }
+                  ha-markdown {
+                    padding: 0!important;
+                  }
+                content: |
+                  <div>Controls</div>
+
+          ## CONTROLS: BUTTONS
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: button_control
+                icon: mdi:air-conditioner
+                name: AirCon
+                tap_action:
+                  #Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - type: 'custom:simple-thermostat'
+                          entity: climate.mhiductedac
+                          name: Ducted Living & Bedrooms
+                          step_size: 1
+                          control:
+                            headings: false
+                            fan: true
+                            hvac: true
+                          hide:
+                            state: false
+                            mode: false
+                          sensors:
+                            - entity: climate.mhiductedac
+                              name: Mode
+                            - entity: sensor.tempr_lounge
+                              name: Inside
+                            - entity: sensor.tempr_backyard
+                              name: Outside
+                            - entity: sensor.tempoutside_humidity
+                              name: Himidity
+                          style: |
+                            ha-card {
+                            }
+                      type: 'vertical-stack'
+                    large: true
+                    style:
+                      box-shadow: none
+                      background: '#141414'
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                    title: Air Conditioner
+
+              - type: custom:button-card
+                template: button_control
+                icon: mdi:fan
+                name: Fans
+                tap_action:
+                  # FANS Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - entities:
+                            - type: section
+                              label: BEDROOMS
+                            - entity: input_number.fan_speed_b1
+                              icon: 'mdi:fan'
+                              name: Bedroom 1
+                            - entity: input_number.fan_speed_b2
+                              icon: 'mdi:fan'
+                              name: Bedroom 2
+                            - entity: input_number.fan_speed_b3
+                              icon: 'mdi:fan'
+                              name: Bedroom 3
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                          #title: Home Assistant
+                          type: entities
+                      type: 'vertical-stack'
+                    large: true
+                    style:
+                      box-shadow: none
+                      background: '#141414'
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                      width: 750px
+                    title: Ceiling Fans
+
+              - type: custom:button-card
+                template: button_control
+                icon: mdi:blinds
+                name: Blinds
+                tap_action:
+                  # FANS Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - entities:
+                            - type: section
+                              label: LIVING AREAS
+                            - entity: cover.blind_lr_sheer
+                              name: Lounge - Sheer
+                            - entity: cover.blind_lr_block
+                              name: Lounge - Block
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                          #title: Home Assistant
+                          type: entities
+                        - entities:
+                            - type: section
+                              label: BEDROOMS
+                            - entity: cover.blind_b1_sheer
+                              name: Bedroom 1 - Sheer
+                            - entity: cover.blind_b1_block
+                              name: Bedroom 1 - Block
+                            - entity: cover.blind_b2_sheer
+                              name: Bedroom 2 - Sheer
+                            - entity: cover.blind_b2_block
+                              name: Bedroom 2 - Block
+                            - entity: cover.blind_b3_sheer
+                              name: Bedroom 3 - Sheer
+                            - entity: cover.blind_b3_block
+                              name: Bedroom 3 - Block
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                          #title: Home Assistant
+                          type: entities
+                      type: 'horizontal-stack'
+                    large: true
+                    style:
+                      box-shadow: none
+                      background: '#141414'
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                      width: 750px
+                    title: Roller Blinds
+
+              - type: custom:button-card
+                template: button_control
+                icon: mdi:window-shutter
+                name: Shutters
+                tap_action:
+                  # FANS Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - entities:
+                            - type: section
+                              label: LIVING AREAS
+                            - entity: cover.roller_shutter_frw
+                              name: Funroom Window
+                            - entity: cover.roller_shutter_frd
+                              name: Funroom Door
+                            - entity: cover.roller_shutter_lr
+                              name: Lounge
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                          #title: Home Assistant
+                          type: entities
+                        - entities:
+                            - type: section
+                              label: BEDROOMS
+                            - entity: cover.roller_shutter_b1
+                              name: Bedroom 1
+                            - entity: cover.roller_shutter_b2
+                              name: Bedroom 2
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                          #title: Home Assistant
+                          type: entities
+                      type: 'horizontal-stack'
+                    large: true
+                    style:
+                      box-shadow: none
+                      background: '#141414'
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                      width: 750px
+                    title: Roller Shutters
+
+              - type: custom:button-card
+                template: button_control
+                icon: mdi:garage
+                name: Doors
+                tap_action:
+                  # FANS Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - entities:
+                            - type: section
+                              label: DOORS
+                            # - entity: lock.front_door
+                            #   name: Front Door Lock
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                          #title: Home Assistant
+                          type: entities
+                        - entities:
+                            - type: section
+                              label: GARAGE
+                            - entity: switch.shelly1_garagefront
+                              name: Garage Door - Front
+                            - entity: switch.shelly1_garagerear
+                              name: Garage Door - Rear
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                          #title: Home Assistant
+                          type: entities
+                      type: 'horizontal-stack'
+                    large: true
+                    style:
+                      box-shadow: none
+                      background: '#141414'
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                      width: 750px
+                    title: Roller Shutters
+
+              - type: custom:button-card
+                template: button_control
+                icon: mdi:robot-vacuum
+                name: Vacuum
+                tap_action:
+                  # FANS Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - type: 'custom:vacuum-card'
+                          entity: vacuum.xiaomi_vacuum_cleaner
+                          stats:
+                            default:
+                              - attribute: filter_left
+                                unit: hours
+                                subtitle: Filter
+                              - attribute: side_brush_left
+                                unit: hours
+                                subtitle: Side brush
+                              - attribute: main_brush_left
+                                unit: hours
+                                subtitle: Main brush
+                              - attribute: sensor_dirty_left
+                                unit: hours
+                                subtitle: Sensors
+                            cleaning:
+                              - attribute: cleaned_area
+                                unit: m2
+                                subtitle: Cleaning area
+                              - attribute: cleaning_time
+                                unit: minutes
+                                subtitle: Cleaning time
+                          actions:
+                            - name: Clean living room
+                              service: script.clean_living_room
+                              icon: 'mdi:sofa'
+                            - name: Clean bedroom
+                              service: script.clean_bedroom
+                              icon: 'mdi:bed-empty'
+
+                        - type: custom:button-card
+                          entity: input_boolean.nodered_button_vacuum_loungebedrooms
+                          name: Vac Top
+                          template: button_control
+                          icon: mdi:robot-vacuum
+                          tap_action:
+                            action: toggle
+                          styles:
+                            icon:
+                              - color: '#673ab7'
+
+                        - type: custom:button-card
+                          entity: input_boolean.nodered_button_vacuum_funroom
+                          name: Vac Funtoom
+                          template: button_control
+                          icon: mdi:robot-vacuum
+                          tap_action:
+                            action: toggle
+                          styles:
+                            icon:
+                              - color: '#3f51b5'
+                      type: 'horizontal-stack'
+                    large: true
+                    style:
+                      box-shadow: none
+                      background: '#141414'
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                      width: 750px
+                    title: Vacuum
+
+          ## AUTOMATIONS: HEADER
+          - type: horizontal-stack
+            cards:
+              - type: markdown
+                style: |
+                  ha-card {
+                    height: 100%; 
+                    background-color: rgba(0, 0, 0, 0);
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                    font-size: 1.8em;
+                    padding: 0 !important;
+                    line-height: 1.5;
+                    margin-top: 10px;
+                    font-weight: 300;
+                  }
+                  ha-markdown {
+                    padding: 0!important;
+                  }
+                content: |
+                  <div>Automations</div>
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: input_boolean.nodered_goodbye
+                name: Goodbye
+                template: button_control
+                icon: mdi:door-open
+                tap_action:
+                  action: toggle
+                styles:
+                  icon:
+                    - color: '#c79e00'
+
+              - type: custom:button-card
+                entity: input_boolean.nodered_goodnight
+                name: Goodnight
+                template: button_control
+                icon: mdi:weather-night
+                tap_action:
+                  action: toggle
+                styles:
+                  icon:
+                    - color: '#454547'
+
+              - type: custom:button-card
+                entity: input_boolean.nodered_sleepintomorrow
+                name: Sleep In
+                template: button_control
+                icon: mdi:sleep
+                tap_action:
+                  action: toggle
+                styles:
+                  icon:
+                    - color: '#ce881d'
+
+              - type: custom:button-card
+                entity: input_boolean.nodered_irrigation30min
+                name: 20min Irg
+                template: button_control
+                icon: mdi:sprinkler
+                tap_action:
+                  action: toggle
+                styles:
+                  icon:
+                    - color: '#2cc123'
+
+              - type: custom:button-card
+                entity: input_boolean.nodered_accool22
+                name: Cool 22
+                template: button_control
+                icon: mdi:air-conditioner
+                tap_action:
+                  action: toggle
+                styles:
+                  icon:
+                    - color: '#6bb9f0'
+
+              - type: custom:button-card
+                entity: input_boolean.nodered_acwarm18
+                name: Warm 20
+                template: button_control
+                icon: mdi:air-conditioner
+                tap_action:
+                  action: toggle
+                styles:
+                  icon:
+                    - color: '#ce5343'
+
+              - type: custom:button-card
+                entity: input_boolean.nodered_movie
+                name: Movie
+                template: button_control
+                icon: mdi:movie-open
+                tap_action:
+                  action: toggle
+                styles:
+                  icon:
+                    - color: '#673ab7'
+
+              - type: custom:button-card
+                entity: switch.shelly1_garagefront
+                name: Garage (F)
+                template: button_control
+                icon: mdi:garage
+                tap_action:
+                  action: toggle
+                styles:
+                  icon:
+                    - color: '#3f51b5'
+
+          ## VIEW/USAGE: HEADER
+          - type: horizontal-stack
+            cards:
+              - type: markdown
+                style: |
+                  ha-card {
+                    height: 100%; 
+                    background-color: rgba(0, 0, 0, 0);
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                    font-size: 1.8em;
+                    padding: 0 !important;
+                    line-height: 1.5;
+                    margin-top: 10px;
+                    font-weight: 300;
+                  }
+                  ha-markdown {
+                    padding: 0!important;
+                  }
+                content: |
+                  <div>View / Usage</div>
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Cameras
+                template: button_view
+                icon: mdi:cctv
+                tap_action:
+                  #Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - type: picture-entity
+                          entity: camera.reolink_fronteast_camera
+                          show_name: false
+                          show_state: false
+                          camera_view: live
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                        - type: picture-entity
+                          entity: camera.reolink_frontwest_camera
+                          show_name: false
+                          show_state: false
+                          camera_view: live
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                        # - type: iframe
+                        #   url: http://192.168.1.20:8082
+                        #   aspect_ratio: 10%
+                        # - type: iframe
+                        #   url: http://192.168.1.20:8081
+                        #   aspect_ratio: 10%
+                      type: 'horizontal-stack'
+                    large: true
+                    style:
+                      background: '#141414'
+                      box-shadow: none
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                    title: Cameras
+
+              - type: custom:button-card
+                template: button_view
+                icon: mdi:weather-partly-cloudy
+                name: Radar
+                tap_action:
+                  #Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - type: 'custom:bom-radar-card'
+                          frame_count: 10
+                          center_latitude: '-34.921230'
+                          center_longitude: '138.599503'
+                          marker_latitude: '-34.921230'
+                          marker_longitude: '138.599503'
+                          show_marker: true
+                          show_range: true
+                          zoom_level: '6'
+                          map_style: 'satellite'
+                      type: 'horizontal-stack'
+                    large: true
+                    style:
+                      background: '#141414'
+                      box-shadow: none
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                      height: 90%
+                      width: 90%
+                    title: BOM Radar
+
+              - type: custom:button-card
+                template: button_view
+                icon: mdi:home-thermometer
+                name: Temps
+                tap_action:
+                  #Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - type: custom:bar-card
+                          positions:
+                            icon: 'off'
+                            indicator: inside
+                            name: outside
+                          width: 70%
+                          severity:
+                            - color: '#2196f3'
+                              from: 0
+                              to: 17
+                            - color: '#4caf50'
+                              from: 18
+                              to: 22
+                            - color: '#ff9800cf'
+                              from: 23
+                              to: 29
+                            - color: '#bb615a'
+                              from: 30
+                              to: 50
+                          entities:
+                            - sensor.tempr_bedroom1
+                            - sensor.tempr_bedroom2
+                            - sensor.tempr_bedroom3
+                            - sensor.tempr_lounge
+                            - sensor.tempr_garage
+                            - sensor.tempr_roof
+                            - sensor.tempr_techcupboard
+                            - sensor.tempr_backyard
+                            - sensor.tempr_bom_air
+                          style: |-
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                            bar-card-value {
+                              margin-right: auto;
+                              font-size: 13px;
+                              font-weight: bold;
+                              text-shadow: 1px 1px #0005;
+                            }
+                        - type: 'vertical-stack'
+                          cards:
+                            - type: custom:mini-graph-card
+                              entities:
+                                - entity: sensor.tempr_backyard
+                                  name: BY
+                                - entity: sensor.tempr_bedroom1
+                                  name: B1
+                                - entity: sensor.tempr_bedroom2
+                                  name: B2
+                                - entity: sensor.tempr_bedroom3
+                                  name: B3
+                              style: |
+                                ha-card {
+                                  box-shadow: none;
+                                  background: #141414;
+                                  padding-right: 15px!important;
+                                }
+                              name: Temperatures
+                              line_color: blue
+                              line_width: 2
+                              #font_size: 75
+                              show:
+                                labels: true
+                                extrema: false
+                                name: true
+                                icon: false
+                                state: false
+                            - type: custom:mini-graph-card
+                              entities:
+                                - entity: sensor.tempbedroom1_humidity
+                                  name: B1
+                                - entity: sensor.tempbedroom2_humidity
+                                  name: B2
+                                - entity: sensor.tempbedroom2_humidity
+                                  name: B3
+                                - entity: sensor.templounge_humidity
+                                  name: Lounge
+                              style: |
+                                ha-card {
+                                  box-shadow: none;
+                                  background: #141414;
+                                  padding-right: 15px!important;
+                                }
+                              name: Humidity
+                              line_color: blue
+                              # line_color: gray
+                              line_width: 2
+                              #font_size: 75
+                              show:
+                                labels: true
+                                extrema: false
+                                name: true
+                                icon: false
+                                state: false
+                              #aspect_ratio: 1/3
+                              #animate: true
+                      type: 'horizontal-stack'
+                    large: true
+                    style:
+                      background: '#141414'
+                      box-shadow: none
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                      width: 800px
+                      #height: 550px
+                    title: Temperatures
+
+              - type: custom:button-card
+                template: button_view
+                icon: mdi:shield-home
+                name: Security
+                tap_action:
+                  # FANS Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - entities:
+                            - type: section
+                              label: DOORS
+                            - entity: binary_sensor.front_door_open
+                              name: Front Door
+                            - entity: binary_sensor.opengarage
+                              name: Garage Roller Door
+                            - entity: binary_sensor.openshed
+                              name: Shed Door
+                            - entity: binary_sensor.opensidegate
+                              name: Side Gate (West)
+                            # - entity: binary_sensor.opengaragegate
+                            #   name: Unused Sensor 1
+                            # - entity: binary_sensor.openletterbox
+                            #   name: Unused Sensor 2
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                          #title: Home Assistant
+                          type: entities
+                        - entities:
+                            - type: section
+                              label: SENSORS - MOTION
+                            - entity: sensor.nest_status
+                              name: Nest Smoke Status
+                            - entity: sensor.nest_co_status
+                              name: Nest CO Status
+                            - entity: sensor.nest_color_status
+                              name: Nest Smoke Colour
+                            - entity: binary_sensor.motion1
+                              name: Motion - Backyard
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                          #title: Home Assistant
+                          type: entities
+                      type: 'horizontal-stack'
+                    large: true
+                    style:
+                      background: '#141414'
+                      box-shadow: none
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                      width: 800px
+                    title: Security Status
+
+              - type: custom:button-card
+                template: button_view
+                icon: mdi:battery-charging-wireless-70
+                name: Battery
+                tap_action:
+                  #Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - entities:
+                            - type: section
+                              label: August Lock
+                            - sensor.aug_lock_battery
+                            - sensor.front_door_keypad_battery
+                            - type: section
+                              label: Nest
+                            - sensor.nest_battery
+                            - type: section
+                              label: Xiaomi Sensors
+                            - sensor.motion1_battery
+                            - sensor.cube_battery
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                          #title: Home Assistant
+                          type: entities
+                        - entities:
+                            - type: section
+                              label: Devices
+                            - sensor.ipad_battery
+                            - sensor.pixel4xlwarwick_battery_level
+                            - sensor.pixel4xlbridie_battery_level
+                          show_header_toggle: false
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                          #title: Home Assistant
+                          type: entities
+                      type: 'horizontal-stack'
+                    large: true
+                    style:
+                      background: '#141414'
+                      box-shadow: none
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                      width: 800px
+                    title: Battery
+
+              # - type: custom:button-card
+              #   entity: input_boolean.nodered_sleepintomorrow
+              #   name: Electrical
+              #   template: button_view
+              #   icon: mdi:flash
+
+              - type: custom:button-card
+                template: button_view
+                icon: mdi:solar-power
+                name: Solar
+                tap_action:
+                  #Pop-UP
+                  action: call-service
+                  service: browser_mod.popup
+                  service_data:
+                    card:
+                      cards:
+                        - type: custom:mini-graph-card
+                          entities:
+                            - sensor.solarcurrentproduction
+                          name: Solar Production
+                          hours_to_show: 120
+                          state: false
+                          line_width: 2
+                          show:
+                            labels: false
+                            legend: true
+                            state: false
+                          points_per_hour: 2
+                          style: |
+                            ha-card {
+                              box-shadow: none;
+                              border-radius: 1vw;
+                              background: #141414;
+                              padding-right: 0.7em;
+                            }
+                            paper-icon-button {
+                              padding: 0;
+                              width: 50px;
+                              height: 50px;
+                            }
+                        - type: custom:power-wheel-card
+                          title: 'Power wheel'
+                          solar_power_entity: sensor.solar_power
+                          grid_power_entity: sensor.grid_power
+                          house_power_entity: sensor.houseconsumption_power
+                        - type: 'custom:tesla-style-solar-power-card'
+                          grid_consumption_entity: sensor.solar_power
+                          house_consumption_entity: sensor.houseconsumption_power
+                          grid_to_house_entity: sensor.grid_power
+                      type: 'horizontal-stack'
+                    large: true
+                    style:
+                      background: '#141414'
+                      box-shadow: none
+                      border-radius: 0.8vw 0.8vw 0.8vw 0.8vw
+                      #padding: 1vw 1vw 1vw 1vw
+                      margin: 1vw 1vw 1vw 1vw
+                      #height: 1000px
+                      width: 800px
+                    title: ABB Solar Inverter Over Past 7 Days

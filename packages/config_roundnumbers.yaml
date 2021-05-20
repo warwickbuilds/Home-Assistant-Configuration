@@ -1,0 +1,55 @@
+sensor:
+  - platform: template
+    sensors:
+      tempr_bedroom1:
+        friendly_name: 'Bedroom 1'
+        value_template: "{{ states('sensor.tempbedroom1')|round(0) }}"
+        unit_of_measurement: '°C'
+      tempr_bedroom2:
+        friendly_name: 'Bedroom 2'
+        value_template: "{{ states('sensor.tempbedroom2')|round(0) }}"
+        unit_of_measurement: '°C'
+      tempr_bedroom3:
+        friendly_name: 'Bedroom 3'
+        value_template: "{{ states('sensor.tempbedroom3')|round(0) }}"
+        unit_of_measurement: '°C'
+      tempr_backyard:
+        friendly_name: 'Backyard'
+        value_template: "{{ states('sensor.tempoutside')|round(0) }}"
+        unit_of_measurement: '°C'
+      tempr_roof:
+        friendly_name: 'Roof'
+        value_template: "{{ states('sensor.temproof')|round(0) }}"
+        unit_of_measurement: '°C'
+      tempr_bom_air:
+        friendly_name: 'BOM Air'
+        value_template: "{{ states('sensor.adelaide_airport_temp')|round(0) }}"
+        unit_of_measurement: '°C'
+      tempr_bom_feelslike:
+        friendly_name: 'BOM Feels'
+        value_template: "{{ states('sensor.adelaide_airport_temp_feels_like')|round(0) }}"
+        unit_of_measurement: '°C'
+      # tempr_bom_maxtoday:
+      #   friendly_name: 'BOM Max<>'
+      #   value_template: "{{ states('sensor.bom_adelaide_max_temp_c_0')|round(0) }}"
+      #   unit_of_measurement: '°C'
+      # tempr_bom_mintonight:
+      #   friendly_name: 'BOM Min>'
+      #   value_template: "{{ states('sensor.bom_adelaide_min_temp_c_1')|round(0) }}"
+      #   unit_of_measurement: '°C'
+      tempr_bom_humidity:
+        friendly_name: 'BOM Humid'
+        value_template: "{{ states('sensor.adelaide_airport_humidity')|round(0) }}"
+        unit_of_measurement: '°C'
+      tempr_techcupboard:
+        friendly_name: 'Tech Cbnt'
+        value_template: "{{ states('sensor.broadlinkrm_temperature')|round(0) }}"
+        unit_of_measurement: '°C'
+      tempr_lounge:
+        friendly_name: 'Lounge'
+        value_template: "{{ states('sensor.templounge')|round(0) }}"
+        unit_of_measurement: '°C'
+      tempr_garage:
+        friendly_name: 'Garage'
+        value_template: "{{ states('sensor.tempgaragecc')|round(0) }}"
+        unit_of_measurement: '°C'

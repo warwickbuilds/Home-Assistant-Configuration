@@ -1,0 +1,6 @@
+# Ping Google
+binary_sensor:
+  - platform: ping
+    name: internetping
+    host: 8.8.8.8
+    scan_interval: 10

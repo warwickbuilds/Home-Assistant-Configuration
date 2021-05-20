@@ -1,0 +1,10 @@
+#https://www.home-assistant.io/integrations/intesishome/
+climate:
+  - platform: intesishome
+    username: !secret intesishome_un
+    password: !secret intesishome_pw
+
+  # https://github.com/jnimmo/hass-intesisbox
+  # doesn't work with intesishome box
+  # - platform: intesisbox
+  #   host: http://192.168.1.30/

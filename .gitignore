@@ -1,0 +1,32 @@
+# A * ensures that everything will be ignored.
+*
+# You can whitelist files/folders with !, these will not be ignored.
+!*.yaml
+!.gitignore
+!*.md
+!lovelace
+!packages
+!www
+!custom_components
+
+# Ignore folders.
+.storage
+.cloud
+.vscode
+tts/
+deps/
+/www/cameras/
+node-red/
+NotUsed-Reference
+
+# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+ip_bans.yaml
+secrets.yaml
+known_devices.yaml
+html5_push_registrations.conf
+home-assistant_v2.db
+home-assistant.log
+.august.conf
+.ring_cache.pickle
+.uuid
+.HA_Version

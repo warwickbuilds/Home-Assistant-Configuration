@@ -1,0 +1,217 @@
+title: Home Assistant
+views:
+  - !include /config/lovelace/mobile.yaml
+  - !include /config/lovelace/controlpanel.yaml
+  - !include /config/lovelace/lovelace_old_status.yaml
+
+button_card_templates:
+  button_light:
+    show_state: false
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    dbltap_action:
+      action: more-info
+    styles:
+      card:
+        - width: 90px
+        - height: 90px
+        - border-radius: 7px
+      grid:
+        - grid-template-areas: '"i" "n" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      img_cell:
+        - align-self: start
+        - text-align: start
+        - justify-self: start
+      name:
+        - justify-self: left
+        - padding-left: 12px
+        - padding-bottom: 7px
+        - font-weight: normal
+        - font-size: .9em
+        #- text-transform: lowercase
+        - color: '#000'
+      state:
+        #- justify-self: center
+        #- padding-left: 10px
+      icon:
+        - width: 35%
+        - width: 40%
+        - position: absolute
+        - left: 11px
+        - top: -3px
+        - color: '#000'
+    state:
+      - value: 'off'
+        icon: mdi:lightbulb
+        styles:
+          card:
+            - background-color: '#ffffff38'
+            #- border: '1px solid #fad859'
+          icon:
+            - color: darkgrey
+            - filter: grayscale(100%)
+          name:
+            - color: darkgrey
+            #- filter: opacity(50%)
+      - value: 'on'
+        icon: mdi:lightbulb-on
+        styles:
+          card:
+            - background-color: '#fad859'
+          icon:
+            - color: '#424242'
+          name:
+            - color: '#424242'
+          state:
+            - color: '#424242'
+
+  button_light_small:
+    show_state: false
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    dbltap_action:
+      action: more-info
+    styles:
+      card:
+        - width: 70px
+        - height: 70px
+        - border-radius: 7px
+      grid:
+        - grid-template-areas: '"i" "n" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      img_cell:
+        - align-self: start
+        - text-align: start
+        - justify-self: start
+      name:
+        - justify-self: left
+        - padding-left: 7px
+        - padding-bottom: 7px
+        - font-weight: normal
+        - font-size: .8em
+        #- text-transform: lowercase
+        - color: '#000'
+      state:
+        #- justify-self: center
+        #- padding-left: 10px
+      icon:
+        - width: 35%
+        - width: 40%
+        - position: absolute
+        - left: 4px
+        - top: -3px
+        - color: '#000'
+    state:
+      - value: 'off'
+        icon: mdi:lightbulb
+        styles:
+          card:
+            - background-color: '#ffffff38'
+            #- border: '1px solid #fad859'
+          icon:
+            - color: darkgrey
+            - filter: grayscale(100%)
+          name:
+            - color: darkgrey
+            #- filter: opacity(50%)
+      - value: 'on'
+        icon: mdi:lightbulb-on
+        styles:
+          card:
+            - background-color: '#fad859'
+          icon:
+            - color: '#424242'
+          name:
+            - color: '#424242'
+          state:
+            - color: '#424242'
+
+  button_control:
+    show_state: false
+    tap_action:
+      action: toggle
+    # hold_action:
+    #   action: more-info
+    # dbltap_action:
+    #   action: more-info
+    styles:
+      card:
+        - width: 90px
+        - height: 90px
+        - border-radius: 7px
+        #- filter: 'opacity(80%)'
+        - background: 'rgba(255, 255, 255, 0.8)'
+      grid:
+        - grid-template-areas: '"i" "n" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      img_cell:
+        - align-self: start
+        - text-align: start
+        - justify-self: start
+      name:
+        - justify-self: left
+        - padding-left: 12px
+        - padding-bottom: 7px
+        - font-weight: normal
+        - font-size: .9em
+        #- text-transform: lowercase
+        - color: '#000'
+      state:
+        #- justify-self: center
+        #- padding-left: 10px
+      icon:
+        - width: 35%
+        - width: 40%
+        - position: absolute
+        - left: 11px
+        - top: -3px
+        - color: '#000'
+
+  button_view:
+    show_state: false
+    tap_action:
+      action: toggle
+    # hold_action:
+    #   action: more-info
+    # dbltap_action:
+    #   action: more-info
+    styles:
+      card:
+        - width: 90px
+        - height: 90px
+        - border-radius: 7px
+        - background: 'rgba(255, 255, 255, 0.8)'
+      grid:
+        - grid-template-areas: '"i" "n" "s"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 1fr min-content min-content
+      img_cell:
+        - align-self: start
+        - text-align: start
+        - justify-self: start
+      name:
+        - justify-self: left
+        - padding-left: 12px
+        - padding-bottom: 7px
+        - font-weight: normal
+        - font-size: .9em
+        - color: '#000'
+        #- text-transform: lowercase
+      state:
+        #- justify-self: center
+        #- padding-left: 10px
+      icon:
+        - width: 35%
+        - width: 40%
+        - position: absolute
+        - left: 11px
+        - top: -3px
+        - color: '#000'

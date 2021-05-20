@@ -1,0 +1,13 @@
+# # https://www.home-assistant.io/integrations/proxmoxve/
+# proxmoxve:
+#   - host: !secret proxmox_host
+#     port: !secret proxmox_port
+#     verify_ssl: false
+#     username: !secret proxmox_username
+#     password: !secret proxmox_password
+#     nodes:
+#       - node: pve
+#         vms:
+#           - 100
+#         #containers:
+#         #  - CONTAINER_ID

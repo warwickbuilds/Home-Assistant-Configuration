@@ -1,0 +1,51 @@
+homeassistant:
+  name: Home Assistant
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: metric
+  time_zone: !secret time_zone
+  packages: !include_dir_named packages
+  internal_url: !secret internal_url
+  external_url: !secret external_url
+
+mobile_app:
+frontend:
+person:
+sun:
+system_health:
+updater: # Checks for available updates
+discovery: # Discover some devices automatically
+history: # Enables support for tracking state changes over time
+config: # Enable Configurator Interface
+cloud: # Cloud connection with Hass.io Cloud
+logbook: # View all events in a logbook
+
+hacs:
+  token: !secret hacs_token
+
+lovelace:
+  mode: yaml
+  resources:
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+    - url: /hacsfiles/button-card/button-card.js
+      type: module
+    - url: /hacsfiles/bar-card/bar-card.js
+      type: module
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
+      type: module
+    - url: /hacsfiles/lovelace-card-tools/card-tools.js
+      type: module
+    - url: /hacsfiles/lovelace-layout-card/layout-card.js
+      type: module
+    - url: /hacsfiles/vacuum-card/vacuum-card.js
+      type: module
+    - url: /hacsfiles/bom-radar-card/bom-radar-card.js
+      type: module
+    - url: /hacsfiles/simple-thermostat/simple-thermostat.js
+      type: module
+    - url: /hacsfiles/power-wheel-card/power-wheel-card.js
+      type: module
+    - url: /hacsfiles/tesla-style-solar-power-card/tesla-style-solar-power-card.js
+      type: module

@@ -1,0 +1,8 @@
+recorder: # Status Recrorder between Reboots
+  #DEFAULT: purge_keep_days: 10
+  #DEFAULT: auto_purge: true
+  exclude:
+    domains:
+      - updater
+      - script
+      - automation

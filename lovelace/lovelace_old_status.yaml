@@ -1,0 +1,101 @@
+title: Status
+icon: mdi:information-outline
+path: status
+background: '#000'
+theme: black
+cards:
+  - type: entities
+    title: Battery Levels
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: August Lock
+      - sensor.aug_lock_battery
+      - type: section
+        label: Nest
+      - sensor.nest_battery
+      - type: section
+        label: Xiaomi Temp Sensors
+      - sensor.tempbedroom1_battery
+      - sensor.tempbedroom2_battery
+      - sensor.tempbedroom3_battery
+      - sensor.templounge_battery
+      - sensor.tempoutside_battery
+      - type: section
+        label: Xiaomi Open Sensors
+      - sensor.openletterbox_battery
+      - sensor.opengarage_battery
+      - sensor.opengaragegate_battery
+      - sensor.opensshed_battery
+      - sensor.opensidegate_battery
+      - type: section
+        label: Xiaomi Button Switches
+      - sensor.bedroom1_battery
+      - sensor.bedroom2_battery
+      - sensor.bedroom3_battery
+      - sensor.funroom_battery
+      - sensor.frontdoor_battery
+      - type: section
+        label: Xiaomi Motion Sensors
+      - sensor.motion1_battery
+      - type: section
+        label: Xiaomi Cube
+      - sensor.cube_battery
+
+  - type: entities
+    title: Sensors
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: Smoke Detectors
+      - sensor.nest_co_status
+      - sensor.nest_status
+      - sensor.nest_color_status
+      - type: section
+        label: Motion Sensor
+      - binary_sensor.motion1
+      - type: section
+        label: Weather
+      - sensor.broadlink_sensor_temperature
+      - sensor.tempbedroom1
+      - sensor.tempbedroom2
+      - sensor.tempbedroom3
+      - sensor.tempoutside
+      - sensor.templounge_temperature
+      - sensor.tempbedroom1_humidity
+      - sensor.tempbedroom2_humidity
+      - sensor.tempbedroom3_humidity
+      - sensor.tempoutside_humidity
+      - sensor.templounge_humidity
+  - type: entities
+    title: Server & Services
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: Proxmox VMs
+      - entity: binary_sensor.pve_hassosova_3_5_running
+        name: HASSio (hassosova-3.5 - 106)
+      - type: section
+        label: Hardware Devices
+      - entity: binary_sensor.nest_online
+        name: Nest Protect (Smoke Sensor)
+  - type: entities
+    title: Sonoff Switches
+    show_header_toggle: false
+    entities:
+      - switch.sonoff_4chpro_1_switch_1
+      - switch.sonoff_4chpro_1_switch_2
+      - switch.sonoff_4chpro_1_switch_3
+      - switch.sonoff_4chpro_1_switch_4
+      - switch.sonoff_lead_1_switch
+      - switch.sonoff_pwr2_1_switch
+      - switch.sonoff_socket_1_switch
+  - type: entities
+    title: Sonoff
+    show_header_toggle: false
+    entities:
+      - switch.sonoff_pwr2_1_switch
+      - sensor.sonoff_pwr2_1_voltage
+      - sensor.sonoff_pwr2_1_power
+      - sensor.sonoff_pwr2_1_current
+      - binary_sensor.sonoff_4chpro_1_status

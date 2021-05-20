@@ -1,0 +1,49 @@
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: !secret influxdb_un
+  password: !secret influxdb_pw
+  max_retries: 3
+  default_measurement: state
+  include:
+    entities:
+      - sensor.solar_power
+      - sensor.houseconsumption_power
+      - sensor.grid_power
+      - sensor.solar_energy
+      - sensor.houseconsumption_energy
+      - sensor.grid_energy
+      - sensor.grid_voltage
+      - sensor.grid_daily
+      - sensor.house_daily
+      - sensor.solar_daily
+      - sensor.grid_monthly
+      - sensor.house_monthly
+      - sensor.solar_monthly
+
+  # component_config_glob:
+  #   sensor.*humidity:
+  #     override_measurement: humidity
+  #   sensor.*temperature:
+  #     override_measurement: temperature
+#
+#
+##############################
+# DOCUMENTATION
+##############################
+#
+### Database
+# Name: homeassistant
+
+## Retention Policy
+# autogen: duration infinite
+
+## Users
+# warwick
+
+## Queries
+#
+
+# REFERENCES
+# https://dummylabs.com/post/2019-01-13-influxdb-part1/

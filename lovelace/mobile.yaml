@@ -1,0 +1,421 @@
+panel: false
+path: mobile
+title: Mobile
+background: '#000'
+# icon: mdi:home-circle
+theme: black
+cards:
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            entity: input_boolean.nodered_goodbye
+            name: Goodbye
+            template: button_control
+            icon: mdi:door-open
+            tap_action:
+              action: toggle
+            styles:
+              icon:
+                - color: '#c79e00'
+
+          - type: custom:button-card
+            entity: input_boolean.nodered_goodnight
+            name: Goodnight
+            template: button_control
+            icon: mdi:weather-night
+            tap_action:
+              action: toggle
+            styles:
+              icon:
+                - color: '#454547'
+
+          - type: custom:button-card
+            entity: input_boolean.nodered_sleepintomorrow
+            name: Sleep In
+            template: button_control
+            icon: mdi:sleep
+            tap_action:
+              action: toggle
+            styles:
+              icon:
+                - color: '#ce881d'
+
+          - type: custom:button-card
+            entity: input_boolean.nodered_irrigation30min
+            name: 20min Irg
+            template: button_control
+            icon: mdi:sprinkler
+            tap_action:
+              action: toggle
+            styles:
+              icon:
+                - color: '#2cc123'
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: input_boolean.nodered_accool22
+            name: Cool 22
+            template: button_control
+            icon: mdi:air-conditioner
+            tap_action:
+              action: toggle
+            styles:
+              icon:
+                - color: '#6bb9f0'
+
+          - type: custom:button-card
+            entity: input_boolean.nodered_acwarm18
+            name: Warm 20
+            template: button_control
+            icon: mdi:air-conditioner
+            tap_action:
+              action: toggle
+            styles:
+              icon:
+                - color: '#ce5343'
+
+          - type: custom:button-card
+            entity: input_boolean.nodered_movie
+            name: Movie
+            template: button_control
+            icon: mdi:movie-open
+            tap_action:
+              action: toggle
+            styles:
+              icon:
+                - color: '#673ab7'
+
+          - type: custom:button-card
+            entity: switch.shelly1_garagefront
+            name: Garage (F)
+            template: button_control
+            icon: mdi:garage
+            tap_action:
+              action:
+            styles:
+              icon:
+                - color: '#3f51b5'
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: button_light_small
+            entity: light.benchall
+            name: Bench
+          - type: custom:button-card
+            template: button_light_small
+            entity: light.pantryall
+            name: Pantry
+          - type: custom:button-card
+            template: button_light_small
+            entity: light.diningall
+            name: Dining
+          - type: custom:button-card
+            template: button_light_small
+            entity: light.loungefrontall
+            name: Lng TV
+          - type: custom:button-card
+            template: button_light_small
+            entity: light.loungebackall
+            name: Lng Bk
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: button_light_small
+            entity: light.funroomall
+            name: Funroom
+          - type: custom:button-card
+            template: button_light_small
+            entity: light.hallwayall
+            name: Hallway
+          - type: custom:button-card
+            template: button_light_small
+            entity: switch.shelly1_84cca8a89f18
+            name: Backyard
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: button_light_small
+            entity: light.bedroom1plugall
+            name: Bed 1
+          - type: custom:button-card
+            template: button_light_small
+            entity: light.bedroom2all
+            name: Bed 2
+          - type: custom:button-card
+            template: button_light_small
+            entity: light.bedroom3all
+            name: Bed 3
+
+      - type: picture-entity
+        entity: camera.reolink_frontwest_camera
+        show_name: false
+        show_state: false
+        camera_view: live
+        style: |
+          ha-card {
+            box-shadow: none;
+            border-radius: 1vw;
+            background: #141414;
+            padding-right: 0.8em;
+          }
+          paper-icon-button {
+            padding: 0;
+            width: 50px;
+            height: 50px;
+          }
+      - type: picture-entity
+        entity: camera.reolink_fronteast_camera
+        show_name: false
+        show_state: false
+        camera_view: live
+        style: |
+          ha-card {
+            box-shadow: none;
+            border-radius: 1vw;
+            background: #141414;
+            padding-right: 0.8em;
+          }
+          paper-icon-button {
+            padding: 0;
+            width: 50px;
+            height: 50px;
+          }
+      - type: picture-entity
+        entity: camera.reolink_garage_camera
+        show_name: false
+        show_state: false
+        camera_view: live
+        style: |
+          ha-card {
+            box-shadow: none;
+            border-radius: 1vw;
+            background: #141414;
+            padding-right: 0.8em;
+          }
+          paper-icon-button {
+            padding: 0;
+            width: 50px;
+            height: 50px;
+          }
+      - type: picture-entity
+        entity: camera.reolink_rear_camera
+        show_name: false
+        show_state: false
+        camera_view: live
+        style: |
+          ha-card {
+            box-shadow: none;
+            border-radius: 1vw;
+            background: #141414;
+            padding-right: 0.8em;
+          }
+          paper-icon-button {
+            padding: 0;
+            width: 50px;
+            height: 50px;
+          }
+
+      - type: 'custom:simple-thermostat'
+        entity: climate.mhiductedac
+        name: Ducted Living & Bedrooms
+        step_size: 1
+        control:
+          headings: false
+          fan: true
+          hvac: true
+        hide:
+          state: false
+          mode: false
+        sensors:
+          - entity: climate.mhiductedac
+            name: Mode
+          - entity: sensor.tempr_lounge
+            name: Inside
+          - entity: sensor.tempr_backyard
+            name: Outside
+          - entity: sensor.tempoutside_humidity
+            name: Himidity
+
+      - type: custom:bar-card
+        positions:
+          icon: 'off'
+          indicator: inside
+          name: outside
+        width: 70%
+        severity:
+          - color: '#2196f3'
+            from: 0
+            to: 17
+          - color: '#4caf50'
+            from: 18
+            to: 22
+          - color: '#ff9800cf'
+            from: 23
+            to: 29
+          - color: '#bb615a'
+            from: 30
+            to: 50
+        entities:
+          - sensor.tempr_bedroom1
+          - sensor.tempr_bedroom2
+          - sensor.tempr_bedroom3
+          - sensor.tempr_lounge
+          - sensor.tempr_garage
+          - sensor.tempr_roof
+          - sensor.tempr_techcupboard
+          - sensor.tempr_backyard
+          - sensor.tempr_bom_air
+        style: |-
+          ha-card {
+            box-shadow: none;
+            border-radius: 1vw;
+            background: #141414;
+            padding-right: 0.7em;
+          }
+          paper-icon-button {
+            padding: 0;
+            width: 50px;
+            height: 50px;
+          }
+          bar-card-value {
+            margin-right: auto;
+            font-size: 13px;
+            font-weight: bold;
+            text-shadow: 1px 1px #0005;
+          }
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.solarcurrentproduction
+        name: Solar Production
+        hours_to_show: 6
+        state: true
+        line_width: 2
+        show:
+          labels: true
+          legend: true
+          state: true
+        points_per_hour: 60
+
+      - type: entities
+        entities:
+          - entity: lock.lock_frontdoor
+            name: Front Door
+          - entity: binary_sensor.opengarage
+            name: Garage Roller Door
+          - entity: binary_sensor.openshed
+            name: Shed Door
+          - entity: binary_sensor.opensidegate
+            name: Side Gate
+        show_header_toggle: false
+        style: |
+          ha-card {
+            box-shadow: none;
+            border-radius: 1vw;
+            background: #141414;
+            padding-right: 0.8em;
+          }
+          paper-icon-button {
+            padding: 0;
+            width: 50px;
+            height: 50px;
+          }
+
+      - entities:
+          - type: section
+            label: LIVING
+          - entity: cover.blind_lr_sheer
+            name: Sheer
+          - entity: cover.blind_lr_block
+            name: Block
+          - entity: cover.roller_shutter_lr
+            name: Shutter
+          - type: section
+            label: FUNROOM
+          - entity: cover.roller_shutter_frw
+            name: Window Shutter
+          - entity: cover.roller_shutter_frd
+            name: Door Shutter
+          - type: section
+            label: BEDROOM 1
+          - entity: cover.blind_b1_sheer
+            name: Sheer
+          - entity: cover.blind_b1_block
+            name: Block
+          - entity: cover.roller_shutter_b1
+            name: Shutter
+          - type: section
+            label: BEDROOM 2
+          - entity: cover.blind_b2_sheer
+            name: Sheer
+          - entity: cover.blind_b2_block
+            name: Block
+          - entity: cover.roller_shutter_b2
+            name: Shutter
+          - type: section
+            label: BEDROOM 3
+          - entity: cover.blind_b3_sheer
+            name: Sheer
+          - entity: cover.blind_b3_block
+            name: Block
+          - entity: cover.roller_shutter_b3
+            name: Shutter
+        type: entities
+        title: Windows
+        show_header_toggle: false
+        style: |
+          ha-card {
+            box-shadow: none;
+            border-radius: 1vw;
+            background: #141414;
+            padding-right: 0.7em;
+          }
+          svg {
+            color:red!important;
+          }
+
+      - type: entities
+        title: Node-Red Automations
+        show_header_toggle: false
+        entities:
+          - input_boolean.nodered_backlightmotionlight
+          - input_boolean.nodered_ceilingfans
+          - input_boolean.nodered_dailycamerasnapshots
+          - input_boolean.nodered_doorbell
+          - input_boolean.nodered_ductedclimatecontrol
+          - input_boolean.nodered_opennotifications
+          - input_boolean.nodered_rollerblinds
+          - input_boolean.nodered_rollershutters
+          - input_boolean.nodered_vacuum
+          - input_boolean.nodered_washingmachinenotification
+          - input_boolean.nodered_morninglightson
+        style: |
+          ha-card {
+            box-shadow: none;
+            border-radius: 1vw;
+            background: #141414;
+            padding-right: 0.7em;
+          }
+
+      - type: entities
+        title: Plugs
+        show_header_toggle: false
+        entities:
+          - switch.bedroom1_plug1
+          - switch.bedroom1_plug2
+          - switch.bedroom1_plug3
+          - switch.bedroom1_plug4
+          #- switch.sonoff_lead_1_switch
+        style: |
+          ha-card {
+            box-shadow: none;
+            border-radius: 1vw;
+            background: #141414;
+            padding-right: 0.7em;
+          }

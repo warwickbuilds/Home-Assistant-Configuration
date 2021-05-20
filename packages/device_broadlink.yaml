@@ -1,0 +1,20 @@
+##
+# CONFIGURED VIA INTEGRATION NOW
+##
+
+# switch:
+#   - platform: broadlink
+#     host: !secret broadlink_ip
+#     mac: !secret broadlink_mac
+#     type: rm2
+# sensor:
+#   - platform: broadlink
+#     host: !secret broadlink_ip
+#     mac: !secret broadlink_mac
+#     monitored_conditions:
+#       - temperature
+
+# homeassistant:
+#   customize:
+#     sensor.broadlink_sensor_temperature:
+#       friendly_name: Temp Tech Cupboard

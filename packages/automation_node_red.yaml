@@ -1,0 +1,56 @@
+input_boolean:
+  nodered_rollershutters:
+    name: Roller Shutters - 7am Open - Dusk Close
+    icon: mdi:arrow-decision-auto
+  nodered_rollerblinds:
+    name: Roller Blinds - 7am Open - Dusk Close
+    icon: mdi:arrow-decision-auto
+  nodered_vacuum:
+    name: Vacuum - Weekdays 9am Run
+    icon: mdi:arrow-decision-auto
+  nodered_doorbell:
+    name: Doorbell - GoogleHome Chime - Mobile Msg
+    icon: mdi:arrow-decision-auto
+  nodered_opennotifications:
+    name: Open Notifications - Door-Garage-Gate
+    icon: mdi:arrow-decision-auto
+  nodered_backlightmotionlight:
+    name: Lights - Backyard Motion Activate
+    icon: mdi:arrow-decision-auto
+  nodered_morninglightson:
+    name: Lights - 7am Kitchen Lights Activate
+    icon: mdi:arrow-decision-auto
+  nodered_ductedclimatecontrol:
+    name: Climate - Ducted Night 11pm Onwards
+    icon: mdi:arrow-decision-auto
+  nodered_washingmachinenotification:
+    name: Waching Machine - Finished Notification
+    icon: mdi:arrow-decision-auto
+  nodered_dailycamerasnapshots:
+    name: Camera - Daily Snapshots
+    icon: mdi:arrow-decision-auto
+  nodered_ceilingfans:
+    name: Ceiling Fans - Temperature Speed Control
+    icon: mdi:arrow-decision-auto
+
+  # BUTTON PRESSES TO FIRE NODE RED AUTOMATION
+  nodered_sleepintomorrow:
+    name: Sleep In (+1hr)
+  nodered_goodnight:
+    name: goodnight
+  nodered_goodbye:
+    name: goodbye
+  nodered_irrigation30min:
+    name: Irrigation 30mins
+  nodered_accool22:
+    name: AC Cool 22
+  nodered_acwarm18:
+    name: AC Warm 18
+  nodered_movie:
+    name: Funroom Movie
+  nodered_garage:
+    name: Garage
+  nodered_button_vacuum_loungebedrooms:
+    name: Vac Top
+  nodered_button_vacuum_funroom:
+    name: Vac Funroom

@@ -1,0 +1,24 @@
+# https://www.home-assistant.io/components/time_date/
+sensor:
+  # - platform: time_date
+  #   display_options:
+  #     #- 'time'
+  #     #- 'date'
+  #     - 'time_date'
+  #     #- 'time_utc'
+  #     #- 'beat'
+  # # 12 Hour Time Format
+  - platform: template
+    sensors:
+      normaltime:
+        value_template: >
+          {{ (now().strftime('%I')|int)~now().strftime(':%M') }}
+
+automation:
+  - alias: 'Update normaltime sensor'
+    trigger:
+      platform: time_pattern
+      minutes: '/1'
+    action:
+      service: homeassistant.update_entity
+      entity_id: sensor.normaltime

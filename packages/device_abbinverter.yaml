@@ -1,0 +1,58 @@
+### DISABLED AS USING SHELLY EM MODULE ###
+
+# https://www.modbusdriver.com/modpoll.html
+# https://www.home-assistant.io/integrations/modbus/
+# modbus:
+#   type: tcp
+#   host: 192.168.1.33
+#   port: 502
+#   sensors:
+#     - name: InverterPower
+#       address: 40088
+#       slave: 1
+#       #register: 40088
+#       input_type: holding
+#       unit_of_measurement: kW
+#       count: 1
+#       scale: 1
+#       offset: 0
+#       precision: 0
+#       data_type: int
+
+# sensor:
+# https://www.home-assistant.io/integrations/sensor.modbus/
+# - platform: modbus
+#   scan_interval: 5
+#   registers:
+#     - name: InverterPower
+#       slave: 1
+#       register: 40088
+#       register_type: holding
+#       unit_of_measurement: kW
+#       count: 1
+#       scale: 1
+#       offset: 0
+#       precision: 0
+#       data_type: int
+
+# - platform: template
+#   sensors:
+# solar_daily_energy:
+#   friendly_name: Solar Daily Energy
+#   unit_of_measurement: kWh
+#   value_template: "{{ states('sensor.solar_daily_production')|float }}"
+# solar_monthly_energy:
+#   friendly_name: Solar Monthly Energy
+#   unit_of_measurement: kWh
+#   value_template: "{{ states('sensor.solar_monthly_production')|float }}"
+# solarcurrentproduction:
+#   unit_of_measurement: 'watts'
+#   value_template: '{{ states.sensor.inverterpower.state }}0'
+# https://www.home-assistant.io/integrations/utility_meter
+# utility_meter:
+#   solar_daily_production:
+#     source: sensor.InverterPower
+#     cycle: daily
+#   solar_monthly_production:
+#     source: sensor.InverterPower
+#     cycle: monthly

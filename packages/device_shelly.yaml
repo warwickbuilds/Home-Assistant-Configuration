@@ -1,0 +1,65 @@
+## Devices configured vid Integration UI
+
+## Additional Values
+
+sensor:
+  # Calculate House Actual Usage (Mix from solar and grid) in Watts
+  - platform: template
+    sensors:
+      houseconsumption_power:
+        friendly_name: 'House Usage Power'
+        unit_of_measurement: 'W'
+        device_class: power
+        value_template: "{{ (states('sensor.solar_power')|round(0)) + (states('sensor.grid_power')|round(0)) }}"
+
+  # https://www.home-assistant.io/integrations/integration/#energy
+
+  - platform: integration
+    source: sensor.houseconsumption_power
+    name: houseconsumption_energy
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.solar_power
+    name: solar_energy
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.grid_power
+    name: grid_energy
+    unit_prefix: k
+    round: 2
+
+# platform: template
+#   sensors:
+#     net_grid:
+#       friendly_name: "Electrcity Import"
+#       unit_of_measurement: 'W'
+#       value_template: " {{(states.sensor.solar_generation_power.state | float) - (states.sensor.efergy_746075.state | float)}}"
+
+#GRID | SOLAR | USAGE
+#-10     20      10
+# 10     0       10
+
+# Capture Monthly and Daily Totals
+## TODO:
+# seperate  grid_power minus and plus values to get Export and Import values
+utility_meter:
+  solar_monthly:
+    source: sensor.solar_energy
+    cycle: monthly
+  solar_daily:
+    source: sensor.solar_energy
+    cycle: daily
+  house_monthly:
+    source: sensor.houseconsumption_energy
+    cycle: monthly
+  house_daily:
+    source: sensor.houseconsumption_energy
+    cycle: daily
+  grid_monthly:
+    source: sensor.grid_energy
+    cycle: monthly
+  grid_daily:
+    source: sensor.grid_energy
+    cycle: daily
