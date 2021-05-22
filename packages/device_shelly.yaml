@@ -6,14 +6,34 @@ sensor:
   # Calculate House Actual Usage (Mix from solar and grid) in Watts
   - platform: template
     sensors:
+      # Calculate actualy house consumption from solar and grid numbers
       houseconsumption_power:
         friendly_name: 'House Usage Power'
         unit_of_measurement: 'W'
         device_class: power
         value_template: "{{ (states('sensor.solar_power')|round(0)) + (states('sensor.grid_power')|round(0)) }}"
+      # Split grid - and + numbers to measure seperately
+      grid_power_consume:
+        unit_of_measurement: 'W'
+        device_class: power
+        value_template: >-
+          {%- if states.sensor.grid_power.state|float > 0 -%}
+          {{(states.sensor.grid_power.state)}}
+          {%- else -%}
+          0
+          {%- endif -%}
+      grid_power_feedin:
+        unit_of_measurement: 'W'
+        device_class: power
+        value_template: >-
+          {%- if states.sensor.grid_power.state|float < 0 -%}
+          {{ (states.sensor.grid_power.state|float|abs)}}
+          {%- else -%}
+          0
+          {%- endif -%}
 
   # https://www.home-assistant.io/integrations/integration/#energy
-
+  # Integration Sensors which convert watts to kWh
   - platform: integration
     source: sensor.houseconsumption_power
     name: houseconsumption_energy
@@ -27,6 +47,16 @@ sensor:
   - platform: integration
     source: sensor.grid_power
     name: grid_energy
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.grid_power_consume
+    name: grid_energy_consume
+    unit_prefix: k
+    round: 2
+  - platform: integration
+    source: sensor.grid_power_feedin
+    name: grid_energy_feedin
     unit_prefix: k
     round: 2
 
@@ -63,3 +93,17 @@ utility_meter:
   grid_daily:
     source: sensor.grid_energy
     cycle: daily
+  grid_consume_monthly:
+    source: sensor.grid_energy_consume
+    cycle: monthly
+  grid_consume_daily:
+    source: sensor.grid_energy_consume
+    cycle: daily
+  grid_feedin_monthly:
+    source: sensor.grid_energy_feedin
+    cycle: monthly
+    net_consumption: true
+  grid_feedin_daily:
+    source: sensor.grid_energy_feedin
+    cycle: daily
+    net_consumption: true
